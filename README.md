@@ -1,2 +1,159 @@
-# congrats-uyaa
-HTML congratulation page for Ayushma
+!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Congratulations Ayushma Rai!</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+      font-family: 'Segoe UI', sans-serif;
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    .confetti {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 60px 20px 30px;
+    }
+
+    .hero img {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 6px solid white;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: 3em;
+      margin: 10px 0;
+      color: #fff;
+      text-shadow: 1px 1px 2px #000;
+    }
+
+    .gpa-box {
+      background: #fff;
+      display: inline-block;
+      padding: 20px 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      margin-top: 20px;
+    }
+
+    .gpa-box h2 {
+      margin: 0;
+      font-size: 2.5em;
+      color: #ff9800;
+    }
+
+    .message {
+      max-width: 600px;
+      margin: 30px auto;
+      font-size: 1.2em;
+      line-height: 1.8;
+      background: rgba(255,255,255,0.8);
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    .footer {
+      text-align: center;
+      margin: 40px 0 20px;
+      font-size: 1em;
+      color: #fff;
+      text-shadow: 1px 1px 1px #000;
+    }
+  </style>
+</head>
+<body>
+  <canvas class="confetti" id="confetti-canvas"></canvas>
+
+  <div class="hero">
+    <img src="images/ayu.png" alt="Student Photo">
+    <h1>🎉 Congratulations, My Dear Ayushma Rai! 🎓</h1> 
+    <div class="gpa-box">
+      <h2>GPA: 3.47</h2>
+    </div>
+  </div>
+
+    <div class="message">
+    My Dearest Ayu,<br><br>
+    You did it, my love — you lit up the sky with your brilliance.  
+    That 3.47 GPA is not just a number,  
+    it’s a reflection of your dreams, your effort, your fire.  
+    Every late night, every tear, every hope  they all found a voice today.<br><br>
+
+    I’ve always seen the stars in your eyes,  
+    and now the world sees them too.  
+    You don’t just pass exams. I don’t need loud words to explain what you mean to me.
+You’ve become part of my everyday not in a way that demands attention, but in the way air just quietly keeps me alive.
+Loving you isn’t a rush or a dream it’s real, steady, and the most honest part of my life.
+<br><br>
+
+    This moment is yours — but my heart celebrates with you.  
+    And as you walk forward, hand in hand with your dreams,  
+    know that I’ll always be here — loving you, cheering for you,  
+    and falling deeper with every step you take. 💖
+  </div>
+
+
+  <div class="footer">
+    — With love from your Dearest Hubby Aka Aayush rai ❤️
+  </div>
+  <script>
+    const canvas = document.getElementById('confetti-canvas');
+    const context = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let pieces = [];
+
+    for (let i = 0; i < 100; i++) {
+      pieces.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height - canvas.height,
+        size: Math.random() * 10 + 5,
+        speed: Math.random() * 3 + 2,
+        color: `hsl(${Math.random() * 360}, 70%, 60%)`,
+        rotation: Math.random() * 360,
+        rotationSpeed: Math.random() * 10 - 5
+      });
+    }
+
+    function update() {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      for (let p of pieces) {
+        p.y += p.speed;
+        p.rotation += p.rotationSpeed;
+        if (p.y > canvas.height) {
+          p.y = -10;
+          p.x = Math.random() * canvas.width;
+        }
+        context.save();
+        context.translate(p.x, p.y);
+        context.rotate(p.rotation * Math.PI / 180);
+        context.fillStyle = p.color;
+        context.fillRect(-p.size/2, -p.size/2, p.size, p.size);
+        context.restore();
+      }
+      requestAnimationFrame(update);
+    }
+
+    update();
+  </script>
+
+</body>
+</html>
